@@ -40,7 +40,7 @@ require_once("config.php")
                     echo "<td>" . $prd["id"] . "</td>";
                     echo "<td>" . $prd["name_product"] . "</td>";
                     echo "<td>" . $prd["price_product"] . "</td>";
-                    echo "<td>" . ($prd["stock_product"] ?? 0) . "</td>";
+                    echo "<td>" . $prd["stock_product"] . "</td>";
 
                     echo "<td>";
                     echo "<a href='update.php?id=" . $prd['id'] . "'><i class='fa-solid fa-pen me-2 text-warning'></i></a>";
