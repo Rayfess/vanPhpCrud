@@ -15,6 +15,13 @@ require_once("config.php")
 
 <body class="bg-light-subtle">
     <div class="container md-col-6 mt-5">
+        <div class="container">
+            <p>Welcome <?= $_SESSION["user"]["username"] ?></p>
+            <p>Exit Dashboard ? <a class="link-danger link-underline-opacity-25 fw-semibold "
+                    href="logout.php">Logout</a>
+            </p>
+            <a class="link-info link-underline-opacity-25 fw-semibold" href="Create.php">Add New Product [+]</a>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
