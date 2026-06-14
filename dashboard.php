@@ -23,6 +23,11 @@ require_once("auth.php");
                     href="logout.php">Logout</a>
             </p>
             <a class="link-info link-underline-opacity-25 fw-semibold" href="Create.php">Add New Product [+]</a>
+            <?php if (!empty($errmsg)): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $errmsg; ?>
+                </div>
+            <?php endif; ?>
         </div>
         <table class="table table-hover">
             <thead>

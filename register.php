@@ -28,7 +28,6 @@ if (isset($_POST["register"])) {
         exit;
     } else {
         $errmsg = "Invalid, Cant create account";
-        die($errmsg);
     }
 
 }
@@ -51,6 +50,11 @@ if (isset($_POST["register"])) {
             <div class="col-md-6">
                 <h1 class="fs-3">Lets Create Your Account</h1>
                 <p>Already have an account ? <a href="login.php">Login Now</a></p>
+                <?php if (!empty($errmsg)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $errmsg; ?>
+                    </div>
+                <?php endif; ?>
                 <form action="" method="POST">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>

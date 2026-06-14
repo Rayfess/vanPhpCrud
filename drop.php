@@ -14,6 +14,7 @@ if (isset($_GET["id"])) {
     } else {
         $errmsg = "Cant Delete try again later";
         header("Location: dashboard.php");
+        exit;
     }
 }
 

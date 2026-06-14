@@ -24,7 +24,6 @@ if (isset($_POST["create"])) {
         exit;
     } else {
         $errmsg = "Invalid, Cant add new product";
-        header("Location: dashboard.php");
     }
 }
 
@@ -46,6 +45,11 @@ if (isset($_POST["create"])) {
             <div class="col-md-6">
                 <h1 class="fs-3">Lets Add Your Product</h1>
                 <div class="mt-3">
+                    <?php if (!empty($errmsg)): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $errmsg; ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="" method="POST">
                         <div class="mb-3">
                             <label for="nameProduct" class="form-label">Name Product</label>

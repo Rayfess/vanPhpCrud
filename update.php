@@ -39,7 +39,6 @@ if (isset($_POST["update"])) {
         exit;
     } else {
         $errmsg = "Invalid, Cant update product";
-        header("Location: dashboard.php");
     }
 }
 
@@ -61,6 +60,11 @@ if (isset($_POST["update"])) {
             <div class="col-md-6">
                 <h1 class="fs-3">Lets Add Your Product</h1>
                 <div class="mt-3">
+                    <?php if (!empty($errmsg)): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $errmsg; ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="" method="POST">
                         <input type="hidden" name="id" value="<?= $listProduct['id'] ?>" />
                         <div class="mb-3">
