@@ -1,5 +1,7 @@
 <?php
 require_once("config.php");
+if (isset($_SESSION["user"]))
+    header("Location: dashboard.php");
 
 if (isset($_POST["login"])) {
     $errmsg = "";
@@ -7,7 +9,7 @@ if (isset($_POST["login"])) {
     $usernameOrmail = $_POST["usernameOrmail"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM accounts WHERE username:=username OR email:=email";
+    $sql = "SELECT * FROM accounts WHERE username = :username OR email = :email";
     $stmt = $pdo->prepare($sql);
 
     $valdat = [
@@ -22,7 +24,8 @@ if (isset($_POST["login"])) {
     if ($user && password_verify($password, $user["password"])) {
         $_SESSION["user"] = $user;
         header("Location: dashboard.php");
-        exit;
+    } else {
+        $errmsg = "Invalid Credentials";
     }
 }
 
@@ -44,19 +47,22 @@ if (isset($_POST["login"])) {
             <div class="col-md-6">
                 <h1 class="fs-3">Login to your account to learn more</h1>
                 <p>Dont have account ? <a href="register.php">Register Now</a></p>
+                <?php if (!empty($errmsg)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $errmsg; ?>
+                    </div>
+                <?php endif; ?>
                 <form action="" method="POST">
                     <div class="mb-3">
                         <label for="usernameOrmail" class="form-label">Username or Email Address</label>
-                        <input type="text" class="form-control" id="usernameOrmail" name="usernameOrmail"
+                        <input type="text" class="form-control" name="usernameOrmail"
                             placeholder="Type your username or email here">
                     </div>
-
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input class="form-control" type="password" id="password" />
+                        <input class="form-control" name="password" type="password" />
                     </div>
-
-                    <button class="btn btn-outline-primary" type="submit" name="login" value="login">Submit</button>
+                    <button class="btn btn-primary" type="submit" name="login" value="login">Login</button>
                 </form>
             </div>
         </div>

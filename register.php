@@ -1,11 +1,15 @@
 <?php
 require_once("config.php");
+if (isset($_SESSION["user"])) {
+    header("Location: dashboard.php");
+    exit;
+}
 
 if (isset($_POST["register"])) {
     $errmsg = "";
 
-    $username = $_POST["username"];
-    $email = $_POST["email"];
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO accounts (username, email, password) VALUES (:username, :email, :password)";
@@ -18,6 +22,7 @@ if (isset($_POST["register"])) {
     ];
 
     $save = $stmt->execute($valdat);
+
     if ($save) {
         header("Location: login.php");
         exit;
@@ -58,10 +63,9 @@ if (isset($_POST["register"])) {
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input class="form-control" type="password" id="password" />
+                        <input class="form-control" type="password" name="password" id="password" />
                     </div>
-                    <button class="btn btn-outline-primary" type="submit" name="register"
-                        value="register">Submit</button>
+                    <button class="btn btn-primary" type="submit" name="register" value="register">Submit</button>
                 </form>
             </div>
         </div>

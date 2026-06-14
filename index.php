@@ -1,5 +1,9 @@
 <?php
 require_once("config.php");
+if (isset($_SESSION["user"])) {
+    header("Location: dashboard.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +41,9 @@ require_once("config.php");
         <div class="p-5 mb-4 bg-light rounded-3">
             <h1 class="fs-1 fw-bold">Welcome To Our Sentences</h1>
             <p class="col-md-8 fs-5 mx-auto">We'll wait your attendance here lets make it out</p>
-            <button class="btn btn-primary btn-lg mt-3" type="button">Learn More</button>
+            <a href="login.php">
+                <button class="btn btn-primary btn-lg mt-3" type="button">Learn More</button>
+            </a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
