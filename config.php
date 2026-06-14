@@ -2,12 +2,11 @@
 session_start();
 
 $host = "127.0.0.1";
+$dbname = "vancrud_db";
 $user = "root";
 $pass = "";
-$dbname = "vancrud_db";
-$charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
